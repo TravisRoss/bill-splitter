@@ -37,12 +37,42 @@
   }
 }
 
-.friend-list {
+.app {
+  display: flex;
+  padding: 1rem;
+}
+
+.split-bill {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  width: 300px;
+  width: 55%;
+  background-color: beige;
   padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.split-bill h5 {
+  padding-bottom: 1rem;
+}
+
+.split-bill-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.bill-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bill-row input,
+.bill-row select {
+  width: 10rem;
+}
+
+.split-bill h5 {
+  margin: 0;
 }
 
 button {
@@ -50,7 +80,7 @@ button {
   background-color: rgb(255, 166, 0);
   border-radius: 5px;
   border-color: transparent;
-  width: fit-content;
+  width: 4rem;
   height: 2rem;
 }
 
@@ -59,10 +89,19 @@ button:active {
   color: white;
 }
 
+.friend-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 45%;
+  padding: 1rem;
+}
+
 .friend {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 
 .friend-info {

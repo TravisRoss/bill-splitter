@@ -9,19 +9,83 @@ const initialFriends = [
 
 function App() {
   const [friends, setFriends] = useState(initialFriends);
+  const [selectedId, setSelectedId] = useState(null);
 
   return (
-    <div>
-      <FriendsList friends={friends} onSetFriends={setFriends} />
+    <div className="app">
+      <FriendsList
+        friends={friends}
+        onSetFriends={setFriends}
+        onSelectFriend={setSelectedId}
+        selectedId={selectedId}
+      />
+      <SplitBillForm friends={friends} selectedId={selectedId} />
     </div>
   );
 }
 
-function FriendsList({ friends, onSetFriends }) {
-  const [selectedId, setSelectedId] = useState(null);
+function SplitBillForm({ friends, selectedId }) {
+  const [bill, setBill] = useState(0);
+  const [usersExpense, setUsersExpense] = useState(0);
+  const [friendsExpense, setFriendsExpense] = useState(0);
+  const [personPaying, setPersonPaying] = useState(null);
 
+  let friend = friends.find((f) => f.id === selectedId);
+  let friendName = friend?.name || "X";
+
+  function handleFormSubmit() {}
+
+  return (
+    <div className="split-bill">
+      <h5>SPLIT A BILL WITH {friendName}</h5>
+      <form className="split-bill-form">
+        <BillRow value={bill} onChange={setBill}>
+          🤑 Bill value
+        </BillRow>
+        <BillRow value={usersExpense} onChange={setUsersExpense}>
+          🧑 Your expense
+        </BillRow>
+        <BillRow value={friendsExpense} onChange={setFriendsExpense}>
+          🧑‍🤝‍🧑 {friendName ? `${friendName}'s` : "X's"} expense
+        </BillRow>
+
+        <div className="bill-row">
+          <label>💵 Who's paying the bill?</label>
+          <select
+            value={personPaying}
+            onChange={(e) => setPersonPaying(e.target.value)}
+          >
+            <option value="you">you</option>
+            {friends.map((friend) => (
+              <option value={friend.name}>{friend.name}</option>
+            ))}
+          </select>
+        </div>
+
+        <div className="right">
+          <Button>Split bill</Button>
+        </div>
+      </form>
+    </div>
+  );
+}
+
+function BillRow({ value, onChange, children }) {
+  return (
+    <div className="bill-row">
+      <label>{children}</label>
+      <input
+        type="text"
+        value={value}
+        onChange={(e) => onChange(Number(e.target.value))}
+      />
+    </div>
+  );
+}
+
+function FriendsList({ friends, onSetFriends, selectedId, onSelectFriend }) {
   function handleSelectFriend(friendId) {
-    setSelectedId(friendId === selectedId ? null : friendId);
+    onSelectFriend(friendId === selectedId ? null : friendId);
   }
 
   return (
@@ -45,7 +109,7 @@ function FriendsList({ friends, onSetFriends }) {
 function Friend({ name, image, selected, onSelect }) {
   return (
     <div className={`friend ${selected ? "selected" : ""}`}>
-      <img src={image} />
+      <img src={image} alt="friend-image" />
       <span>{name}</span>
       <button className="button" onClick={onSelect}>
         {selected ? "close" : " select"}
@@ -54,7 +118,7 @@ function Friend({ name, image, selected, onSelect }) {
   );
 }
 
-function AddFriendButton({ friends, onSetFriends, children }) {
+function AddFriendButton({ friends, onSetFriends }) {
   const [showForm, setShowForm] = useState(false);
 
   function handleOpenForm() {
