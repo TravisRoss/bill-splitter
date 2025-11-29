@@ -36,3 +36,28 @@
     transform: rotate(360deg);
   }
 }
+
+.friend-list {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  padding: 1rem;
+}
+
+button {
+  cursor: pointer;
+  background-color: orange;
+  border-radius: 10px;
+  border-color: transparent;
+  width: fit-content;
+}
+
+.friend {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.selected {
+  background-color: beige;
+}
