@@ -40,6 +40,7 @@
 .friend-list {
   display: flex;
   flex-direction: column;
+  gap: 1rem;
   width: 300px;
   padding: 1rem;
 }
@@ -47,7 +48,7 @@
 button {
   cursor: pointer;
   background-color: rgb(255, 166, 0);
-  border-radius: 10px;
+  border-radius: 5px;
   border-color: transparent;
   width: fit-content;
   height: 2rem;
@@ -61,17 +62,19 @@ button:active {
 .friend {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-}
-
-.friend-name,
-.friend-image {
-  display: flex;
   justify-content: space-between;
 }
 
-div.add-friend-form > input {
-  width: 50px;
+.friend-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.friend-info input,
+.friend-info button {
+  width: 8rem;
 }
 
 .selected {
@@ -88,4 +91,9 @@ div.add-friend-form > input {
   flex-direction: column;
   padding: 1rem;
   background-color: beige;
+  border-radius: 5px;
+}
+
+label {
+  text-wrap: nowrap;
 }
