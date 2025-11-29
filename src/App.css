@@ -46,10 +46,16 @@
 
 button {
   cursor: pointer;
-  background-color: orange;
+  background-color: rgb(255, 166, 0);
   border-radius: 10px;
   border-color: transparent;
   width: fit-content;
+  height: 2rem;
+}
+
+button:active {
+  background-color: rgb(160, 104, 0);
+  color: white;
 }
 
 .friend {
@@ -58,6 +64,28 @@ button {
   justify-content: space-evenly;
 }
 
+.friend-name,
+.friend-image {
+  display: flex;
+  justify-content: space-between;
+}
+
+div.add-friend-form > input {
+  width: 50px;
+}
+
 .selected {
+  background-color: beige;
+}
+
+.right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.add-friend-form {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
   background-color: beige;
 }
