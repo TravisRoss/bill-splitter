@@ -6,6 +6,7 @@ export default function FriendsList({
   onSetFriends,
   selectedId,
   onSelectFriend,
+  sumOwed,
 }) {
   function handleSelectFriend(friendId) {
     onSelectFriend(friendId === selectedId ? null : friendId);
@@ -19,6 +20,8 @@ export default function FriendsList({
           image={friend.image}
           selected={selectedId === friend.id}
           onSelect={() => handleSelectFriend(friend.id)}
+          sumOwed={sumOwed}
+          text={friend.text}
           key={friend.id}
         />
       ))}
