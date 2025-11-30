@@ -3,13 +3,13 @@ import BillRow from "./BillRow";
 import Button from "./Button";
 
 export default function SplitBillForm({ friends, selectedId }) {
-  const [bill, setBill] = useState(0);
-  const [usersExpense, setUsersExpense] = useState(0);
-  const [friendsExpense, setFriendsExpense] = useState(0);
+  const [bill, setBill] = useState("");
+  const [usersExpense, setUsersExpense] = useState("");
   const [personPaying, setPersonPaying] = useState(null);
 
   let friend = friends.find((f) => f.id === selectedId);
   let friendName = friend?.name || "X";
+  let friendsExpense = bill - usersExpense;
 
   return (
     <div className="split-bill">
@@ -21,7 +21,10 @@ export default function SplitBillForm({ friends, selectedId }) {
         <BillRow value={usersExpense} onChange={setUsersExpense}>
           🧑 Your expense
         </BillRow>
-        <BillRow value={friendsExpense} onChange={setFriendsExpense}>
+        <BillRow
+          value={friendsExpense}
+          inputDisabled={true}
+        >
           🧑‍🤝‍🧑 {friendName ? `${friendName}'s` : "X's"} expense
         </BillRow>
 

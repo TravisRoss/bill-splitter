@@ -1,4 +1,4 @@
-export default function BillRow({ value, onChange, children }) {
+export default function BillRow({ value, onChange, inputDisabled, children }) {
   return (
     <div className="bill-row">
       <label>{children}</label>
@@ -6,6 +6,7 @@ export default function BillRow({ value, onChange, children }) {
         type="text"
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
+        disabled={inputDisabled}
       />
     </div>
   );
